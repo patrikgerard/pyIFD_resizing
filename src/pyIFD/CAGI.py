@@ -817,7 +817,7 @@ def scores_pick_variables(BlockScoreALL, sgrid, blk_idx, blk_idy, PossiblePoints
     return [MeanInSpace, PossiblePoints, diff_Mean_Best_scaled, diff_Mean_Best_scaledInv]
 
 
-def CAGI(impath):
+def CAGI(impath, new_width, new_height):
     """
     Main driver for CAGI algorithm.
 
@@ -830,6 +830,8 @@ def CAGI(impath):
     """
     # Read image in as double RGB
     BGR = cv2.imread(impath)
+    BGR = cv2.resize(BGR, (new_width, new_height))
+
     RGB = np.double(BGR[..., ::-1])
 
     (height, width, color) = RGB.shape
